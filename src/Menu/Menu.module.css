@@ -1,0 +1,20 @@
+.menu {
+    padding-bottom: 30px;
+}
+.menuItem {
+    margin: 10px;
+    text-decoration: none;
+    color: darkblue;
+    font-size: 20px;
+}
+.menuItem:hover {
+    text-decoration: underline;
+}
+.activeMenuItem {
+    color: red;
+}
+.favoriteMenuIcon{
+    position: absolute;
+    right: 10px;
+    top:10px;
+}
