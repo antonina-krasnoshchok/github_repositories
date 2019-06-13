@@ -1,21 +1,23 @@
 import { connect } from 'react-redux';
 
-import { toggleFavorite, getRepositoriesData } from '../actions';
+import { toggleFavorite, getRepositoriesData, clearRepositories } from '../actions';
 import RepositoriesList from './RepositoriesList';
-import { getRepositoriesList, getLoading } from '../selectors';
+import { getRepositoriesList, getPage } from '../selectors';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     repositories: getRepositoriesList(state),
-    isLoading: getLoading(state),
-    language: ownProps.language
+    language: ownProps.language,
+    page: getPage(state),
+    hasMore: state.repositories.hasMore
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleFavorite: (repository) => dispatch(toggleFavorite(repository)),
-    getRepositoriesData: (language) => dispatch(getRepositoriesData(language))
+    getRepositoriesData: (language, page) => dispatch(getRepositoriesData(language, page)),
+    clearRepositories: () => dispatch(clearRepositories())
   };
 };
 

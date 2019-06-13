@@ -1,9 +1,12 @@
 import * as actions from './config';
 
 const initialState = {
-    repositories : [],
-    favoriteList: [],
-    isLoading: false
+    repositories : {
+        result: [],
+        page: 1,
+        hasMore: true
+    },
+    favoriteList: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -24,16 +27,32 @@ const rootReducer = (state = initialState, action) => {
         case actions.SET_REPOSITORIES_DATA:
             return {
                 ...state,
-                repositories: action.repositories
+                repositories: {
+                    ...state.repositories,
+                    result: [...state.repositories.result, ...action.repositories],
+                    page: action.page + 1
+                }
             }
-
-        case actions.TOGGLE_LOADING:
+        case actions.CLEAR_REPOSITORIES:
             return {
                 ...state,
-                isLoading: !state.isLoading
+                repositories: {
+                    result: [],
+                    page: 1,
+                    hasMore: true
+                }
             }
+        case actions.SET_HAS_MORE:
+                return {
+                    ...state,
+                    repositories: {
+                        ...state.repositories,
+                        hasMore: !state.repositories.hasMore
+                    }
+                }
+
         default: 
-            return state      
+            return state;     
     } 
 };
   

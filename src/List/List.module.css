@@ -35,3 +35,6 @@ a, a:visited, a:focus, a:link{
 a:hover{
     text-decoration: underline
 }
+#root .infinite-scroll-component{
+    overflow: hidden
+}

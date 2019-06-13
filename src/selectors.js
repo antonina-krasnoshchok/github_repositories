@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 
-export const getLoading = (state) => state.isLoading;
-
-export const getRepositories = (state) => state.repositories;
+export const getRepositories = (state) => state.repositories.result;
 
 export const getFavorite = (state) => state.favoriteList;
+
+export const getPage = (state) => state.repositories.page;
 
 export const getRepositoriesList = createSelector(
     [getRepositories, getFavorite], (repositories, favoriteList) => {
