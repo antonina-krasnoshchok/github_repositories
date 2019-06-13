@@ -15,7 +15,7 @@ const Menu = () => {
                         {language}
                     </NavLink>
                 )}
-                <NavLink to = {`/${FAVORITE_ROUTE}`} className = {styles.favoriteMenuIcon} >
+                <NavLink to = {`/${FAVORITE_ROUTE}`} className = {styles.favoriteMenuIcon}>
                     <Favorite color = "secondary" fontSize = "large"  />
                 </NavLink>
         </div>

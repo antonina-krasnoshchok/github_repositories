@@ -6,6 +6,8 @@ export const getFavorite = (state) => state.favoriteList;
 
 export const getPage = (state) => state.repositories.page;
 
+export const getHasMore = (state) => state.repositories.hasMore;
+
 export const getRepositoriesList = createSelector(
     [getRepositories, getFavorite], (repositories, favoriteList) => {
         const repositoriesList = repositories.map(repository => {

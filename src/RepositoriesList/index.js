@@ -2,14 +2,14 @@ import { connect } from 'react-redux';
 
 import { toggleFavorite, getRepositoriesData, clearRepositories } from '../actions';
 import RepositoriesList from './RepositoriesList';
-import { getRepositoriesList, getPage } from '../selectors';
+import { getRepositoriesList, getPage, getHasMore } from '../selectors';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     repositories: getRepositoriesList(state),
-    language: ownProps.language,
     page: getPage(state),
-    hasMore: state.repositories.hasMore
+    hasMore: getHasMore(state),
+    language: ownProps.language
   };
 };
 

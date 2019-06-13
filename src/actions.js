@@ -7,7 +7,7 @@ export const toggleFavorite = (repository) => {
   };
 };
 
-const setRepositoriesData = (repositories, page) => {
+export const setRepositoriesData = (repositories, page) => {
   return {
     type: constants.SET_REPOSITORIES_DATA,
     repositories,
@@ -28,7 +28,7 @@ export const getRepositoriesData = (language, page) => {
     const sort = 'starts';
     const per_page = 25;
     
-    fetch(`${url}?q=${queryStr}+language:${language}&sort=${sort}&per_page=${per_page}&page=${page}`)
+    return fetch(`${url}?q=${queryStr}+language:${language}&sort=${sort}&per_page=${per_page}&page=${page}`)
       .then((res) => res.json())
       .then(({items}) => {
         const repositories = items.map(({id, language, name, owner, stargazers_count, html_url}) => {
@@ -41,7 +41,6 @@ export const getRepositoriesData = (language, page) => {
                   html_url
               }
         }); 
-
         dispatch(setRepositoriesData(repositories, page));
       })
       .catch(() => {
@@ -50,7 +49,7 @@ export const getRepositoriesData = (language, page) => {
   };
 };
 
-const setHasMore = () => {
+export const setHasMore = () => {
   return {
     type: constants.SET_HAS_MORE
   };

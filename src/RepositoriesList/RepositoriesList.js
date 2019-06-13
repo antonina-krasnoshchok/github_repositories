@@ -8,7 +8,6 @@ import List from '../List';
 import styles from './RepositoriesList.module.css';
 
 class RepositoriesList extends Component {
-
     componentDidMount() {
         const { language, getRepositoriesData, clearRepositories } = this.props;
         clearRepositories(); 
