@@ -4,8 +4,7 @@ import Favorite from '@material-ui/icons/FavoriteOutlined';
 
 import Styles from './List.module.css';
 
-function List(props) {
-    const { repositories, toggleFavorite } = props;
+function List({ repositories, toggleFavorite }) {
     return (
         <div className = {Styles.listContainer}>
             { 

@@ -15,7 +15,7 @@ class RepositoriesList extends Component {
     }; 
 
     render() {
-        const { language, page, getRepositoriesData, repositories, hasMore } = this.props; 
+        const { language, page, getRepositoriesData, repositories, hasMore, toggleFavorite } = this.props; 
         const msg = hasMore ? 
                 "Loaded 200 repositories" : 
                 'Can\'t load repositories. API rate limit exceeded.';
@@ -28,7 +28,7 @@ class RepositoriesList extends Component {
                 loader = {<CircularProgress />}
                 endMessage = {<p><b>{msg}</b></p>}
             >
-                <List {...this.props} />
+                <List repositories={repositories} toggleFavorite={toggleFavorite} />
             </InfiniteScroll>
         )
     };

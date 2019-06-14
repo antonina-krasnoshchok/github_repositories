@@ -51,7 +51,14 @@ describe('Repositories actions', () => {
         const page = 1;
 
 		const mockStore = configureMockStore([thunk]);
-        const store = mockStore({ repositories: []});
+        const store = mockStore({ 
+            repositories: {
+                result: [],
+                page: 1,
+                hasMore: true
+            },
+            favoriteList:[]
+        });
         
 		const repositoriesData = {
             total_count: 3283729,
@@ -68,15 +75,17 @@ describe('Repositories actions', () => {
             }]
         };
         
+        fetchMock.get(`${url}?q=${queryStr}+language:${language}&sort=${sort}&per_page=${per_page}&page=${page}`, {
+			body: repositoriesData
+        });
+        
         const repositories = [repositoryObj];
 
-		const expectedActions = [ 
-            {type: 'SET_REPOSITORIES_DATA', repositories, page} 
-        ];
-
-		fetchMock.get(`${url}?q=${queryStr}+language:${language}&sort=${sort}&per_page=${per_page}&page=${page}`, {
-			body: repositoriesData
-		});
+		const expectedActions = [{
+            type: 'SET_REPOSITORIES_DATA', 
+            repositories, 
+            page
+        }];
 
 		return store.dispatch(getRepositoriesData(language, page)).then(() => {
 			expect(store.getActions()).toEqual(expectedActions);
